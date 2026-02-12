@@ -1,10 +1,10 @@
-name: Generate Snake Animation
+name: generate-snake-game-from-github-contribution-grid
 
 on:
   # Runs automatically every 12 hours
   schedule:
     - cron: "0 */12 * * *"
-  
+
   # Allows you to run it manually
   workflow_dispatch:
 
@@ -12,11 +12,11 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     steps:
       # Generate snake SVG files
       - name: Generate Snake
-        uses: Platane/snk/svg-only@v3
+        uses: Platane/snk@v3
         with:
           github_user_name: sujalthapa369
           outputs: |
@@ -27,7 +27,7 @@ jobs:
 
       # Push the generated files to a branch called "output"
       - name: Push to output branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+        uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: output
           build_dir: dist
